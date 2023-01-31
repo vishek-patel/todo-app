@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 // import reactLogo from './assets/react.svg'
 import './App.css'
 // import Header from './Header'
@@ -23,15 +23,20 @@ function App() {
     setTodo(todo.filter((e)=>{
         return e.title!==title
     }))
+
+
     
      localStorage.setItem("todo", JSON.stringify(todo))
+
   
   }
 
-  const [todo,setTodo] = useState([initTodo])
+  const [todo,setTodo] = useState(initTodo)
   
   useEffect(() => {
+
     localStorage.setItem("todo", JSON.stringify(todo));
+
   }, [todo])
 
 
@@ -63,15 +68,17 @@ function App() {
         desc:desc
       }
       
-      setTodos([...todo, obj]);
+      setTodo([...todo, obj]);
+      setTitle("");
+      setDesc("");
       
-      
+    }
 //       if(localStorage.getItem("todo")){ 
 //         localStorage.setItem("todo",JSON.stringify(obj))
 //         addTodo();
 //       }
       // localStorage.setItem("todo",JSON.stringify(obj))
-    }
+    
   }
 
   return (

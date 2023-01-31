@@ -75,7 +75,7 @@ button:focus-visible {
   justify-content: space-between;
   align-items: center;
   padding: 0.5em 1em;
-  border-bottom: 1px solid #5b2ed6;
+  border-bottom: 1px solid #807f82;
   transition: background-color 0.25s;
   transition: all 0.3s ease-in-out;
 }
@@ -86,7 +86,7 @@ button:focus-visible {
   /* justify-content: space-between; */
   align-items: center;
   padding:3em 3em;
-  border: 1px solid #5b2ed6;
+  border: 1px solid #edecf0;
   border-radius: 8px;
   transition: background-color 0.25s;
   transition: all 0.3s ease-in-out;

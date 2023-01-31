@@ -6,6 +6,14 @@ import {Todos} from './Todos'
 
 function App() {
   // const [count, setCount] = useState(0)
+  let initTodo;
+  if (localStorage.getItem("todo") === null) {
+    initTodo = [];
+  }
+  else {
+    initTodo = JSON.parse(localStorage.getItem("todo"));
+  }
+  
   const [title , setTitle] = useState("")
   const [desc , setDesc] = useState("")
 
@@ -15,21 +23,28 @@ function App() {
     setTodo(todo.filter((e)=>{
         return e.title!==title
     }))
+    
+     localStorage.setItem("todo", JSON.stringify(todo))
   
   }
 
-  const [todo,setTodo] = useState([])
+  const [todo,setTodo] = useState([initTodo])
+  
+  useEffect(() => {
+    localStorage.setItem("todo", JSON.stringify(todo));
+  }, [todo])
 
-  function addTodo(){
-    let obj = localStorage.getItem("todo")
-    obj = JSON.parse(obj)
-    setTodo([...todo,obj])
 
-  }
+//   function addTodo(){
+//     let obj = localStorage.getItem("todo")
+//     obj = JSON.parse(obj)
+//     setTodo([...todo,obj])
+
+//   }
+  
   function submitFunction(e){
     e.preventDefault();
-    setTitle("")
-    setDesc("")
+   
     if(!title || !desc){
       alert("Title or Description cannot be blank")
     }
@@ -47,10 +62,14 @@ function App() {
         title:title,
         desc:desc
       }
-      if(localStorage.getItem("todo")){ 
-        localStorage.setItem("todo",JSON.stringify(obj))
-        addTodo();
-      }
+      
+      setTodos([...todo, obj]);
+      
+      
+//       if(localStorage.getItem("todo")){ 
+//         localStorage.setItem("todo",JSON.stringify(obj))
+//         addTodo();
+//       }
       // localStorage.setItem("todo",JSON.stringify(obj))
     }
   }
